@@ -1,0 +1,1080 @@
+-- ts file was generated at discord.gg/25ms
+
+local v8 = loadstring(game:HttpGet("https://raw.githubusercontent.com/ISPPs54/Ui/refs/heads/main/zzzzz"))()
+    v8:Theme("dark")
+    local v9 = v8:AddWindow("Farm Glitch", "Glitch")
+    v8:Notification().MaxNotifications = 6
+    v9:AddTabLabel("Home")
+    local v10 = v9:AddTab("Farm", "earth")
+    local v11 = v9:AddTab("Kill", "earth")
+    local v12 = v9:AddTab("Teleport", "earth")
+    local v13 = v9:AddTab("Misc", "earth")
+    local v14 = v10:AddSection("Auto Farm General", "left")
+    v14:AddToggle("Auto Eat Eggs", false, function(p15)
+        local vu16 = game.Players.LocalPlayer
+        local vu17 = nil
+        local function vu22()
+            local v18, v19, v20 = ipairs(vu16.Backpack:GetChildren())
+            while true do
+                local v21
+                v20, v21 = v18(v19, v20)
+                if v20 == nil then
+                    break
+                end
+                if v21.ClassName == "Tool" and v21.Name == "Protein Egg" then
+                    return v21
+                end
+            end
+            return nil
+        end
+        local function v25()
+            while getgenv().AutoEggs do
+                local v23 = vu22()
+                local v24 = tick()
+                if v23 then
+                    if vu17 then
+                        if v24 - vu17 < 1800 then
+                            print("L\'\197\147uf a d\195\169j\195\160 \195\169t\195\169 mang\195\169 r\195\169cemment. Il faudra attendre 30 minutes.")
+                        else
+                            vu16:WaitForChild("muscleEvent"):FireServer(unpack({
+                                "proteinEgg",
+                                v23
+                            }))
+                            vu17 = v24
+                            print("\197\146uf mang\195\169 \195\160 " .. os.date("%X", v24))
+                        end
+                    else
+                        vu16:WaitForChild("muscleEvent"):FireServer(unpack({
+                            "proteinEgg",
+                            v23
+                        }))
+                        vu17 = v24
+                        print("Premier \197\147uf mang\195\169 \195\160 " .. os.date("%X", v24))
+                    end
+                else
+                    print("Aucun \197\147uf (Protein Egg) trouv\195\169 dans l\'inventaire.")
+                end
+                wait(30)
+            end
+        end
+        getgenv().AutoEggs = p15
+        if p15 then
+            spawn(v25)
+        else
+            print("AutoEggs d\195\169sactiv\195\169.")
+        end
+    end)
+    v14:AddToggle("AutoFarm General", false, function(p26)
+        getgenv().AutoFarm = p26
+        spawn(function()
+            while wait() do
+                if getgenv().AutoFarm then
+                    pcall(function()
+                        local v27 = {
+                            "rep",
+                            workspace:WaitForChild("machinesFolder"):WaitForChild("King Boulder"):WaitForChild("interactSeat")
+                        }
+                        game:GetService("Players").LocalPlayer:WaitForChild("muscleEvent"):FireServer(unpack(v27))
+                    end)
+                end
+            end
+        end)
+    end)
+    v14:AddToggle("Frame Visibility", false, function(p28)
+        local v29 = game:GetService("ReplicatedStorage")
+        local v30, v31, v32 = pairs(v29:GetChildren())
+        while true do
+            local v33
+            v32, v33 = v30(v31, v32)
+            if v32 == nil then
+                break
+            end
+            if v33.Name:match("Frame$") then
+                v33.Visible = not p28
+            end
+        end
+    end)
+    v14:AddToggle("Speed Grind", false, function(p34)
+        if muscleEvent then
+            getgenv().isGrinding = p34
+            if p34 then
+                equipUniquePet("Swift Samurai")
+                for _ = 1, 32 do
+                    task.spawn(function()
+                        while getgenv().isGrinding do
+                            muscleEvent:FireServer("rep")
+                            task.wait()
+                        end
+                    end)
+                end
+            else
+                unequipAllPets()
+            end
+        else
+            return
+        end
+    end)
+    v14:AddToggle("Auto Punch With Anim", false, function(p35)
+        local vu36 = game.Players.LocalPlayer
+        local vu37 = vu36.Backpack:FindFirstChild("Punch")
+        local function v38()
+            while getgenv().punching do
+                if vu37 then
+                    vu37.Parent = vu36.Character
+                    vu37:Activate()
+                end
+                wait()
+            end
+        end
+        getgenv().punching = p35
+        if p35 then
+            spawn(v38)
+        end
+    end)
+    v14:AddButton("Anti AFK", function()
+        game:GetService("Players").LocalPlayer.Idled:Connect(function()
+            game:GetService("VirtualUser"):Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+            wait(1)
+            game:GetService("VirtualUser"):Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+        end)
+    end)
+    v14:AddToggle("Muscle King Lift", false, function(p39)
+        _G.autoMuscleKingLift = p39
+        if p39 then
+            spawn(function()
+                while _G.autoMuscleKingLift do
+                    pcall(function()
+                        local v40 = game:GetService("Players").LocalPlayer
+                        local v41 = workspace.machinesFolder["Muscle King Lift"].interactSeat
+                        v40.Character:SetPrimaryPartCFrame(v41.CFrame)
+                        game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", v41)
+                    end)
+                    wait(0.1)
+                end
+            end)
+        end
+    end)
+    v14:AddToggle("Muscle King Squat", false, function(p42)
+        _G.autoMuscleKingSquat = p42
+        if p42 then
+            spawn(function()
+                while _G.autoMuscleKingSquat do
+                    pcall(function()
+                        local v43 = game:GetService("Players").LocalPlayer
+                        local v44 = workspace.machinesFolder["Muscle King Squat"].interactSeat
+                        v43.Character:SetPrimaryPartCFrame(v44.CFrame)
+                        game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", v44)
+                    end)
+                    wait(0.1)
+                end
+            end)
+        end
+    end)
+    v14:AddToggle("Muscle King Bench", false, function(p45)
+        _G.autoMuscleKingBench = p45
+        if p45 then
+            spawn(function()
+                while _G.autoMuscleKingBench do
+                    pcall(function()
+                        local v46 = game:GetService("Players").LocalPlayer
+                        local v47 = workspace.machinesFolder["Muscle King Bench"].interactSeat
+                        v46.Character:SetPrimaryPartCFrame(v47.CFrame)
+                        game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", v47)
+                    end)
+                    wait(0.1)
+                end
+            end)
+        end
+    end)
+    v14:AddToggle("King Boulder", false, function(p48)
+        _G.autoKingBoulder = p48
+        if p48 then
+            spawn(function()
+                while _G.autoKingBoulder do
+                    pcall(function()
+                        local v49 = game:GetService("Players").LocalPlayer
+                        local v50 = workspace.machinesFolder["King Boulder"].interactSeat
+                        v49.Character:SetPrimaryPartCFrame(v50.CFrame)
+                        game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", v50)
+                    end)
+                    wait(0.1)
+                end
+            end)
+        end
+    end)
+    v14:AddToggle("MuscleKing", false, function(p51)
+        getgenv().MuscleKing = p51
+        spawn(function()
+            while wait() do
+                if getgenv().MuscleKing then
+                    local v52 = game.workspace.machinesFolder["Muscle King Mountain"].Rock
+                    local v53 = game.Players.LocalPlayer.Character:WaitForChild("LeftHand")
+                    firetouchinterest(v52, v53, 0)
+                    wait(0.01)
+                    firetouchinterest(v52, v53, 1)
+                end
+            end
+        end)
+    end)
+    v14:AddToggle("Jungle Rock", false, function(p54)
+        getgenv().AncientJungleRock = p54
+        spawn(function()
+            while wait() do
+                if getgenv().AncientJungleRock then
+                    firetouchinterest(game.workspace.machinesFolder["Ancient Jungle Rock"].Rock, game.Players.LocalPlayer.Character.LeftHand, 0)
+                    wait(0.01)
+                    firetouchinterest(game.workspace.machinesFolder["Ancient Jungle Rock"].Rock, game.Players.LocalPlayer.Character.LeftHand, 1)
+                end
+            end
+        end)
+    end)
+    local function vu60()
+        local v55, v56, v57 = ipairs(game:GetService("Players"):GetPlayers())
+        local v58 = {}
+        while true do
+            local v59
+            v57, v59 = v55(v56, v57)
+            if v57 == nil then
+                break
+            end
+            table.insert(v58, v59.Name)
+        end
+        return v58
+    end
+    local function v66()
+        local v61, v62, v63 = ipairs(game:GetService("Players"):GetPlayers())
+        local v64 = {}
+        while true do
+            local v65
+            v63, v65 = v61(v62, v63)
+            if v63 == nil then
+                break
+            end
+            if v65.Name ~= game.Players.LocalPlayer.Name then
+                table.insert(v64, v65.Name)
+            end
+        end
+        return v64
+    end
+    local vu67 = {}
+    local vu68 = {}
+    local function vu70(p69)
+        return vu67[p69.Name] or false
+    end
+    local function vu72(p71)
+        return vu68[p71.Name] or false
+    end
+    Kill = v11:AddSection("Whitelist", "left")
+    Farming = v11:AddSection("Killing", "right")
+    local vu74 = Kill:AddDropdown("WhiteList [Player]", vu60(), 1, function(p73)
+        if p73 then
+            vu67[p73] = true
+        end
+    end)
+    local vu76 = Kill:AddDropdown("UnWhiteList [Player]", vu60(), 1, function(p75)
+        if p75 then
+            vu67[p75] = false
+        end
+    end)
+    local vu78 = Kill:AddDropdown("Kill Player", v66(), 1, function(p77)
+        if p77 then
+            vu68[p77] = true
+        end
+    end)
+    local vu80 = Kill:AddDropdown("Stop Kill Player", v66(), 1, function(p79)
+        if p79 then
+            vu68[p79] = nil
+        end
+    end)
+    Kill:AddButton("Refresh Player", function()
+        vu74:Refresh(vu60())
+        vu76:Refresh(vu60())
+        vu78:Refresh(vu60())
+        vu80:Refresh(vu60())
+    end)
+    Kill:AddLabel("")
+    Kill:AddLabel("")
+    Kill:AddLabel("")
+    Kill:AddLabel("")
+    Kill:AddLabel("")
+    Kill:AddLabel("")
+    Kill:AddLabel("")
+    Kill:AddLabel("")
+    Kill:AddLabel("")
+    local function vu85(p81)
+        local v82 = p81.Character
+        if v82 and not vu70(p81, vu67) then
+            local vu83 = v82:FindFirstChild("Head")
+            local vu84 = game.Players.LocalPlayer
+            if vu84 then
+                vu84 = vu84.Character:FindFirstChild("LeftHand")
+            end
+            if vu83 and vu84 then
+                pcall(function()
+                    firetouchinterest(vu84, vu83, 0)
+                    firetouchinterest(vu84, vu83, 1)
+                end)
+            end
+        end
+    end
+    Farming:AddToggle("AutoKill", false, function(p86)
+        _G.autokill = p86
+        if _G.autokill then
+            task.spawn(function()
+                local v87 = game:GetService("Players")
+                while _G.autokill do
+                    local v88, v89, v90 = ipairs(v87:GetPlayers())
+                    while true do
+                        local v91
+                        v90, v91 = v88(v89, v90)
+                        if v90 == nil then
+                            break
+                        end
+                        if v91 ~= v87.LocalPlayer then
+                            vu85(v91)
+                        end
+                    end
+                    wait(0.1)
+                end
+            end)
+        end
+    end)
+    Farming:AddButton("Start Kill", function()
+        _G.autokill = true
+        task.spawn(function()
+            local v92 = game:GetService("Players")
+            while _G.autokill do
+                local v93, v94, v95 = ipairs(v92:GetPlayers())
+                while true do
+                    local v96
+                    v95, v96 = v93(v94, v95)
+                    if v95 == nil then
+                        break
+                    end
+                    if v96 ~= v92.LocalPlayer and vu72(v96) then
+                        local vu97 = v96.Character
+                        if vu97 then
+                            vu97 = vu97:FindFirstChild("Head")
+                        end
+                        local vu98 = game.Players.LocalPlayer
+                        if vu98 then
+                            vu98 = vu98.Character:FindFirstChild("LeftHand")
+                        end
+                        if vu97 and vu98 then
+                            pcall(function()
+                                firetouchinterest(vu98, vu97, 0)
+                                wait(0.01)
+                                firetouchinterest(vu98, vu97, 1)
+                            end)
+                        end
+                    end
+                end
+                task.wait(0.1)
+            end
+        end)
+    end)
+    Farming:AddToggle("Auto Punch without anim", false, function(p99)
+        getgenv().autoPunchEnabled = p99
+        if p99 then
+            local vu100 = game.Players.LocalPlayer
+            local v101 = vu100.Character
+            if v101 then
+                v101 = vu100.Character:FindFirstChildOfClass("Humanoid")
+            end
+            if v101 then
+                local v102 = vu100.Backpack:FindFirstChild("Punch")
+                if v102 then
+                    v101:EquipTool(v102)
+                end
+                spawn(function()
+                    while getgenv().autoPunchEnabled do
+                        vu100.muscleEvent:FireServer(unpack({
+                            "punch",
+                            "rightHand"
+                        }))
+                        vu100.muscleEvent:FireServer(unpack({
+                            "punch",
+                            "leftHand"
+                        }))
+                        game:GetService("RunService").RenderStepped:Wait()
+                    end
+                end)
+            end
+        end
+    end)
+    Farming:AddToggle("Auto Equip Punch", false, function(p103)
+        local vu104 = game:GetService("Players")
+        local function vu107(p105)
+            local v106 = p105.Backpack:FindFirstChild("Punch")
+            if v106 and v106:IsA("Tool") and not p105.Character:FindFirstChild("Punch") then
+                v106.Parent = p105.Character
+            end
+        end
+        local function vu113()
+            local v108 = vu104
+            local v109, v110, v111 = ipairs(v108:GetPlayers())
+            while true do
+                local v112
+                v111, v112 = v109(v110, v111)
+                if v111 == nil then
+                    break
+                end
+                vu107(v112)
+            end
+        end
+        local function v114()
+            while wait(0.1) and getgenv().EquipPunch do
+                vu113()
+            end
+        end
+        getgenv().EquipPunch = p103
+        if p103 then
+            spawn(v114)
+        else
+            getgenv().EquipPunch = false
+        end
+    end)
+    local vu115 = game:GetService("Players")
+    local vu116 = vu115.LocalPlayer
+    local vu117 = false
+    local vu118 = 50
+    local vu119 = {}
+    local function vu122()
+        local v120 = vu116.Character
+        local v121 = vu116.Backpack
+        if v121:FindFirstChild("Punch") then
+            v121.Punch.Parent = v120
+        end
+    end
+    local function vu127(p123)
+        if p123 and (p123.Character and not table.find(vu119, p123.Name)) then
+            local v124 = p123.Character:FindFirstChild("Head")
+            local v125 = vu116.Character
+            if v125 then
+                v125 = vu116.Character:FindFirstChild("LeftHand")
+            end
+            local v126 = vu116.Character
+            if v126 then
+                v126 = vu116.Character:FindFirstChild("RightHand")
+            end
+            if v124 and (v125 and v126) then
+                firetouchinterest(v124, v125, 0)
+                firetouchinterest(v124, v125, 1)
+                firetouchinterest(v124, v126, 0)
+                firetouchinterest(v124, v126, 1)
+            end
+        end
+    end
+    local function vu134()
+        if vu116.Character and vu116.Character:FindFirstChild("HumanoidRootPart") then
+            vu122()
+            local v128 = vu116.Character.HumanoidRootPart.Position
+            local v129 = vu115
+            local v130, v131, v132 = pairs(v129:GetPlayers())
+            while true do
+                local v133
+                v132, v133 = v130(v131, v132)
+                if v132 == nil then
+                    break
+                end
+                if v133 ~= vu116 and v133.Character and (v133.Character:FindFirstChild("HumanoidRootPart") and (v128 - v133.Character.HumanoidRootPart.Position).Magnitude <= vu118) then
+                    vu127(v133)
+                end
+            end
+        end
+    end
+    local function vu136()
+        local v135 = vu116.Character
+        if v135 then
+            v135 = vu116.Character:FindFirstChild("Punch")
+        end
+        if v135 then
+            v135:Activate()
+        else
+            vu122()
+        end
+    end
+    Farming:AddToggle("Ring Kill", false, function(p137)
+        vu117 = p137
+        if p137 then
+            task.spawn(function()
+                while vu117 do
+                    vu134()
+                    task.wait(0.1)
+                end
+            end)
+            task.spawn(function()
+                while vu117 do
+                    vu136()
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end)
+    Farming:AddSlider("Size Of Ring", 1, 500, 50, function(p138)
+        vu118 = p138
+    end)
+    local function vu145()
+        local v139 = vu115
+        local v140, v141, v142 = pairs(v139:GetPlayers())
+        local v143 = {}
+        while true do
+            local v144
+            v142, v144 = v140(v141, v142)
+            if v142 == nil then
+                break
+            end
+            if v144 ~= vu116 then
+                table.insert(v143, v144.Name)
+            end
+        end
+        return v143
+    end
+    local vu147 = Farming:AddDropdown("Whitelist", vu145(), 1, function(p146)
+        if p146 and not table.find(vu119, p146) then
+            table.insert(vu119, p146)
+        end
+    end)
+    local vu153 = Farming:AddDropdown("UnWhitelist", vu145(), 1, function(p148)
+        local v149, v150, v151 = pairs(vu119)
+        while true do
+            local v152
+            v151, v152 = v149(v150, v151)
+            if v151 == nil then
+                break
+            end
+            if v152 == p148 then
+                table.remove(vu119, v151)
+                break
+            end
+        end
+    end)
+    Farming:AddButton("Refresh Player", function()
+        vu147:Refresh(vu145())
+        vu153:Refresh(vu145())
+    end)
+    Farming:AddLabel("")
+    Farming:AddLabel("")
+    Farming:AddLabel("")
+    Farming:AddLabel("")
+    Farming:AddLabel("")
+    Farming:AddLabel("")
+    Farming:AddLabel("")
+    Farming:AddLabel("")
+    Farming:AddLabel("")
+    local v154 = v12:AddSection("Teleport To island", "left")
+    local vu155 = false
+    v154:AddToggle("FarmKill", false, function(p156)
+        vu155 = p156
+        spawn(function()
+            while vu155 do
+                local v157 = game.Players.LocalPlayer
+                local v158 = (v157.Character or v157.CharacterAdded:Wait()):WaitForChild("HumanoidRootPart", 0.1)
+                if v158 then
+                    v158.CFrame = CFrame.new(- 12510.5, - 1.6537845134735107, 28019.103515625)
+                end
+                wait()
+            end
+        end)
+    end)
+    local v159 = v13:AddSection("Misc", "left")
+    v159:AddToggle("Anti Lag V2", false, function(p160)
+        if p160 then
+            local v161, v162, v163 = pairs(game.Workspace:GetDescendants())
+            while true do
+                local v164
+                v163, v164 = v161(v162, v163)
+                if v163 == nil then
+                    break
+                end
+                if v164:IsA("BasePart") then
+                    v164.Transparency = 0.9
+                end
+            end
+        else
+            local v165, v166, v167 = pairs(game.Workspace:GetDescendants())
+            while true do
+                local v168
+                v167, v168 = v165(v166, v167)
+                if v167 == nil then
+                    break
+                end
+                if v168:IsA("BasePart") then
+                    v168.Transparency = 0
+                end
+            end
+        end
+    end)
+    v159:AddButton("Walk on Water", walkOnWater)
+    local v169 = Vector3.new(2048, 0, 2048)
+    local v170 = 20
+    local v171 = 20
+    local v172 = 0
+    for v173 = - v170, v170 do
+        local v174 = v173
+        for v175 = - v171, v171 do
+            local v176 = Instance.new("Part")
+            v176.Parent = game.Workspace
+            v176.Anchored = true
+            v176.Position = Vector3.new(v174 * (v169.X + v172), - 9, v175 * (v169.Z + v172))
+            v176.Size = v169
+            v176.Transparency = 1
+        end
+    end
+    local vu177 = game.Players.LocalPlayer
+    v159:AddSlider("WalkSpeed", 1, 10000, 500, function(p178)
+        if vu177.Character and vu177.Character:FindFirstChildOfClass("Humanoid") then
+            vu177.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = p178
+        end
+    end)
+    v159:AddSlider("JumpPower", 1, 1000, 50, function(p179)
+        if vu177.Character and vu177.Character:FindFirstChildOfClass("Humanoid") then
+            vu177.Character:FindFirstChildOfClass("Humanoid").JumpPower = p179
+        end
+    end)
+    v159:AddSlider("HipHeight", 0, 1000, 2, function(p180)
+        if vu177.Character and vu177.Character:FindFirstChildOfClass("Humanoid") then
+            vu177.Character:FindFirstChildOfClass("Humanoid").HipHeight = p180
+        end
+    end)
+    v159:AddSlider("Change Strength (visual)", 1, 9.9e16, 500, function(p181)
+        game.Players.LocalPlayer.leaderstats.Strength.Value = p181
+    end)
+    local vu182 = game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("changeSpeedSizeRemote")
+    v159:AddSlider("Size", 1, 100, 2, function(p183)
+        vu182:InvokeServer("changeSize", p183)
+    end)
+    v159:AddButton("Night Sky", function()
+        local v184 = game:GetService("Lighting")
+        v184.FogStart = 10
+        v184.FogEnd = 120
+        v184.FogColor = Color3.new(0, 0, 0)
+        v184.TimeOfDay = "00:00"
+    end)
+    v159:AddButton("Full Bright", function()
+        local vu185 = game:GetService("Lighting")
+        pcall(function()
+            vu185.Ambient = Color3.fromRGB(255, 255, 255)
+            vu185.Brightness = 1
+            vu185.FogEnd = 10000000000
+            local v186 = vu185
+            local v187, v188, v189 = ipairs(v186:GetDescendants())
+            while true do
+                local v190
+                v189, v190 = v187(v188, v189)
+                if v189 == nil then
+                    break
+                end
+                if v190:IsA("BloomEffect") or (v190:IsA("BlurEffect") or (v190:IsA("ColorCorrectionEffect") or v190:IsA("SunRaysEffect"))) then
+                    v190.Enabled = false
+                end
+            end
+            vu185.Changed:Connect(function()
+                vu185.Ambient = Color3.fromRGB(255, 255, 255)
+                vu185.Brightness = 1
+                vu185.FogEnd = 10000000000
+            end)
+            spawn(function()
+                while wait() do
+                    local v191 = vu177.Character
+                    if v191 and not v191.HumanoidRootPart:FindFirstChildWhichIsA("PointLight") then
+                        local v192 = Instance.new("PointLight", v191.HumanoidRootPart)
+                        v192.Brightness = 1
+                        v192.Range = 60
+                    end
+                end
+            end)
+        end)
+    end)
+    v159:AddButton("FPS Boost", function()
+        local v193 = game:GetService("Lighting")
+        local v194, v195, v196 = ipairs(v193:GetChildren())
+        local function v198(pu197)
+            if pu197:IsA("Part") then
+                pu197.Material = Enum.Material.Plastic
+            elseif pu197.ClassName:match("Light") then
+                pu197:Destroy()
+            elseif pu197.ClassName:match("Effect") then
+                pcall(function()
+                    pu197.Enabled = false
+                end)
+            end
+        end
+        while true do
+            local v199
+            v196, v199 = v194(v195, v196)
+            if v196 == nil then
+                break
+            end
+            v198(v199)
+        end
+        v193.DescendantAdded:Connect(v198)
+        local v200 = game:GetService("Workspace")
+        local v201, v202, v203 = ipairs(v200:GetDescendants())
+        while true do
+            local v204
+            v203, v204 = v201(v202, v203)
+            if v203 == nil then
+                break
+            end
+            v198(v204)
+        end
+        v200.DescendantAdded:Connect(v198)
+    end)
+    v159:AddButton("Anti Lag", function()
+        settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+        game:GetService("Lighting").GlobalShadows = false
+        game:GetService("Lighting").Technology = Enum.Technology.Compatibility
+        game:GetService("Workspace").Terrain.WaterWaveSize = 0
+        game:GetService("Workspace").Terrain.WaterWaveSpeed = 0
+        game:GetService("Workspace").Terrain.WaterReflectance = 0
+        game:GetService("Workspace").Terrain.WaterTransparency = 0
+        local v205, v206, v207 = pairs(game:GetDescendants())
+        while true do
+            local v208
+            v207, v208 = v205(v206, v207)
+            if v207 == nil then
+                break
+            end
+            if v208:IsA("BasePart") then
+                v208.Material = Enum.Material.SmoothPlastic
+                v208.Reflectance = 0
+            elseif v208:IsA("Decal") or v208:IsA("Texture") then
+                v208:Destroy()
+            end
+        end
+        local v209, v210, v211 = pairs(game:GetDescendants())
+        while true do
+            local v212
+            v211, v212 = v209(v210, v211)
+            if v211 == nil then
+                break
+            end
+            if v212:IsA("ParticleEmitter") or v212:IsA("Trail") then
+                v212.Lifetime = NumberRange.new(0)
+                v212.Rate = 0
+            end
+        end
+    end)
+    v159:AddButton("Force Reset", function()
+        local v213 = game.Players.LocalPlayer.Character
+        if v213 and v213:FindFirstChild("Head") then
+            v213.Head:Destroy()
+        end
+    end)
+    v159:AddButton("ChatSpy", function()
+        enabled = true
+        spyOnMyself = true
+        public = false
+        publicItalics = true
+        privateProperties = {
+            Color = Color3.fromRGB(0, 255, 255),
+            Font = Enum.Font.SourceSansBold,
+            TextSize = 18
+        }
+        local vu214 = game:GetService("StarterGui")
+        local vu215 = game:GetService("Players")
+        local vu216 = vu215.LocalPlayer or (vu215:GetPropertyChangedSignal("LocalPlayer"):Wait() or vu215.LocalPlayer)
+        local vu217 = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest")
+        local vu218 = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("OnMessageDoneFiltering")
+        local vu219 = (_G.chatSpyInstance or 0) + 1
+        _G.chatSpyInstance = vu219
+        local function vu228(pu220, p221)
+            if _G.chatSpyInstance == vu219 then
+                if pu220 ~= vu216 or p221:lower():sub(1, 4) ~= "/spy" then
+                    if enabled and (spyOnMyself == true or pu220 ~= vu216) then
+                        local vu222 = p221:gsub("[\n\r]", ""):gsub("\t", " "):gsub("[ ]+", " ")
+                        local vu223 = true
+                        local v227 = vu218.OnClientEvent:Connect(function(p224, p225)
+                            if p224.SpeakerUserId == pu220.UserId then
+                                local v226 = vu222
+                                if p224.Message == v226:sub(# vu222 - # p224.Message + 1) and (p225 == "All" or p225 == "Team" and (public == false and vu215[p224.FromSpeaker].Team == vu216.Team)) then
+                                    vu223 = false
+                                end
+                            end
+                        end)
+                        wait(1)
+                        v227:Disconnect()
+                        if vu223 and enabled then
+                            if public then
+                                vu217:FireServer((publicItalics and "/me " or "") .. "{SPY} [" .. pu220.Name .. "]: " .. vu222, "All")
+                            else
+                                privateProperties.Text = "{SPY} [" .. pu220.Name .. "]: " .. vu222
+                                vu214:SetCore("ChatMakeSystemMessage", privateProperties)
+                            end
+                        end
+                    end
+                else
+                    enabled = not enabled
+                    wait(0.3)
+                    privateProperties.Text = "{SPY " .. (enabled and "EN" or "DIS") .. "ABLED}"
+                    vu214:SetCore("ChatMakeSystemMessage", privateProperties)
+                end
+            end
+        end
+        local v229, v230, v231 = ipairs(vu215:GetPlayers())
+        while true do
+            local vu232
+            v231, vu232 = v229(v230, v231)
+            if v231 == nil then
+                break
+            end
+            vu232.Chatted:Connect(function(p233)
+                vu228(vu232, p233)
+            end)
+        end
+        vu215.PlayerAdded:Connect(function(pu234)
+            pu234.Chatted:Connect(function(p235)
+                vu228(pu234, p235)
+            end)
+        end)
+        privateProperties.Text = "{SPY " .. (enabled and "EN" or "DIS") .. "ABLED}"
+        vu214:SetCore("ChatMakeSystemMessage", privateProperties)
+        if not vu216.PlayerGui:FindFirstChild("Chat") then
+            wait(3)
+        end
+        local v236 = vu216.PlayerGui.Chat.Frame
+        v236.ChatChannelParentFrame.Visible = true
+        v236.ChatBarParentFrame.Position = v236.ChatChannelParentFrame.Position + UDim2.new(UDim.new(), v236.ChatChannelParentFrame.Size.Y)
+    end)
+    local vu237 = nil
+    local vu238 = {}
+    local v239 = game.Players.LocalPlayer
+    local vu240 = v239.Character or v239.CharacterAdded:Wait()
+    local function vu245()
+        if vu240 then
+            local vu241 = vu240:WaitForChild("Humanoid")
+            local vu242 = vu240:WaitForChild("HumanoidRootPart")
+            vu237 = Instance.new("BodyVelocity")
+            vu237.Velocity = Vector3.new(0, 0, 0)
+            vu237.MaxForce = Vector3.new(100000, 0, 100000)
+            vu237.Parent = vu242
+            local v243 = vu242
+            table.insert(vu238, vu242.GetPropertyChangedSignal(v243, "Velocity"):Connect(function()
+                if _G.antiKnockback then
+                    vu242.Velocity = Vector3.new(0, vu242.Velocity.Y, 0)
+                end
+            end))
+            local v244 = vu241
+            table.insert(vu238, vu241.GetPropertyChangedSignal(v244, "PlatformStand"):Connect(function()
+                if _G.antiKnockback and vu241.PlatformStand then
+                    vu241.PlatformStand = false
+                end
+            end))
+        end
+    end
+    local function vu250()
+        if vu237 then
+            vu237:Destroy()
+            vu237 = nil
+        end
+        local v246, v247, v248 = ipairs(vu238)
+        while true do
+            local v249
+            v248, v249 = v246(v247, v248)
+            if v248 == nil then
+                break
+            end
+            v249:Disconnect()
+        end
+        vu238 = {}
+    end
+    local function v252(p251)
+        vu240 = p251
+        if _G.antiKnockback then
+            vu245()
+        end
+    end
+    if v239.Character then
+        v252(v239.Character)
+    else
+        v239.CharacterAdded:Connect(v252)
+    end
+    v159:AddToggle("Anti-Knockback", false, function(p253)
+        _G.antiKnockback = p253
+        if p253 then
+            vu245()
+        else
+            vu250()
+        end
+    end)
+    local vu254 = false
+    local vu255 = game.Players.LocalPlayer
+    local vu256 = vu255.Character or vu255.CharacterAdded:Wait()
+    local function vu258(p257)
+        vu254 = p257
+    end
+    game:GetService("RunService").Stepped:Connect(function()
+        if vu254 and vu256 then
+            local v259 = vu256
+            local v260, v261, v262 = pairs(v259:GetChildren())
+            while true do
+                local v263
+                v262, v263 = v260(v261, v262)
+                if v262 == nil then
+                    break
+                end
+                if v263:IsA("BasePart") then
+                    v263.CanCollide = not vu254
+                end
+            end
+        end
+    end)
+    v159:AddToggle("Noclip", false, function(p264)
+        vu258(p264)
+    end)
+    vu258(false)
+    local vu265 = Vector3.new(- 8625.9296875, 17.22124671936035, - 5730.47265625)
+    local vu266 = false
+    local function vu268(p267)
+        vu266 = p267
+        while vu266 do
+            if vu255 and vu255.Character and vu255.Character:FindFirstChild("HumanoidRootPart") then
+                vu255.Character.HumanoidRootPart.CFrame = CFrame.new(vu265)
+            end
+            wait(0.1)
+        end
+    end
+    v159:AddToggle("Muscle King", false, function(p269)
+        if p269 then
+            vu266 = true
+            spawn(function()
+                vu268(true)
+            end)
+        else
+            vu266 = false
+        end
+    end)
+    local v270 = v13:AddSection("Misc", "right")
+    v270:AddButton("Rejoin", function()
+        game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+    end)
+    v270:AddButton("ServerHop", function()
+        (function()
+            local vu271 = game.PlaceId
+            local vu272 = {}
+            local vu273 = ""
+            local _ = os.date("!*t").hour
+            local function vu286()
+                local v274 = "https://games.roblox.com/v1/games/" .. vu271 .. "/servers/Public?sortOrder=Asc&limit=100"
+                if vu273 ~= "" then
+                    v274 = v274 .. "&cursor=" .. vu273
+                end
+                local v275 = game.HttpService:JSONDecode(game:HttpGet(v274))
+                if v275.nextPageCursor and (v275.nextPageCursor ~= "null" and v275.nextPageCursor ~= nil) then
+                    vu273 = v275.nextPageCursor
+                end
+                local v276, v277, v278 = pairs(v275.data)
+                while true do
+                    local v279
+                    v278, v279 = v276(v277, v278)
+                    if v278 == nil then
+                        return
+                    end
+                    local vu280 = tostring(v279.id)
+                    local v281 = true
+                    if tonumber(v279.maxPlayers) > tonumber(v279.playing) then
+                        local v282, v283, v284 = pairs(vu272)
+                        while true do
+                            local v285
+                            v284, v285 = v282(v283, v284)
+                            if v284 == nil then
+                                break
+                            end
+                            if vu280 == tostring(v285) then
+                                v281 = false
+                                break
+                            end
+                        end
+                        if v281 then
+                            table.insert(vu272, vu280)
+                            wait()
+                            pcall(function()
+                                wait()
+                                game:GetService("TeleportService"):TeleportToPlaceInstance(vu271, vu280, game.Players.LocalPlayer)
+                            end)
+                            wait(4)
+                        end
+                    end
+                end
+            end;
+            (function()
+                while wait() do
+                    pcall(vu286)
+                    if vu273 ~= "" then
+                        vu286()
+                    end
+                end
+            end)()
+        end)()
+    end)
+    v270:AddButton("Korblox", function()
+        local v287 = game.Players.LocalPlayer.Character
+        v287.RightLowerLeg.MeshId = "http://www.roblox.com/asset/?id=902942093"
+        v287.RightLowerLeg.Transparency = 1
+        v287.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
+        v287.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
+        v287.RightFoot.MeshId = "http://www.roblox.com/asset/?id=902942089"
+        v287.RightFoot.Transparency = 1
+    end)
+    v270:AddButton("Optimization Max", function()
+        local v288, v289, v290 = pairs(workspace:GetDescendants())
+        while true do
+            local v291
+            v290, v291 = v288(v289, v290)
+            if v290 == nil then
+                break
+            end
+            if v291:IsA("BasePart") then
+                v291.Material = Enum.Material.SmoothPlastic
+                v291.CastShadow = false
+                v291.Reflectance = 0
+                v291.Transparency = 0
+            elseif v291:IsA("Decal") or v291:IsA("Texture") then
+                v291:Destroy()
+            elseif v291:IsA("Light") then
+                v291:Destroy()
+            end
+        end
+        settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+        game.Lighting.GlobalShadows = false
+        game.Lighting.FogEnd = 100
+        game.Lighting.FogStart = 0
+        game.Lighting.Brightness = 1
+        local v292, v293, v294 = pairs(game.Lighting:GetChildren())
+        while true do
+            local v295
+            v294, v295 = v292(v293, v294)
+            if v294 == nil then
+                break
+            end
+            if v295:IsA("BlurEffect") or (v295:IsA("BloomEffect") or (v295:IsA("ColorCorrectionEffect") or v295:IsA("DepthOfFieldEffect"))) then
+                v295:Destroy()
+            end
+        end
+    end)
+    task.spawn(function()
+        while true do
+            local v296 = game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+            if v296 then
+                local v297, v298, v299 = ipairs(v296:GetDescendants())
+                while true do
+                    local v300
+                    v299, v300 = v297(v298, v299)
+                    if v299 == nil then
+                        break
+                    end
+                    if v300:IsA("TextLabel") then
+                        if v300.Text:match("Good Karma") then
+                            v300.TextColor3 = Color3.fromRGB(255, 0, 0)
+                        end
+                        if v300.Text:match("Evil Karma") then
+                            v300.TextColor3 = Color3.fromRGB(0, 0, 0)
+                        end
+                    end
+                end
+            end
+            task.wait(0.1)
+        end
+    end)
+end

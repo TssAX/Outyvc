@@ -1,4 +1,33 @@
--- ts file was generated at discord.gg/25ms
+local function walkOnWater()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local waterPart = Instance.new("Part")
+    waterPart.Size = Vector3.new(1000, 0.1, 1000)
+    waterPart.Anchored = true
+    waterPart.Transparency = 1
+    waterPart.Position = Vector3.new(0, -8, 0)
+    waterPart.Parent = game.Workspace
+    
+    local function updatePosition()
+        if character and character:FindFirstChild("HumanoidRootPart") then
+            local rootPos = character.HumanoidRootPart.Position
+            waterPart.Position = Vector3.new(rootPos.X, waterPart.Position.Y, rootPos.Z)
+        end
+    end
+    
+    game:GetService("RunService").Stepped:Connect(updatePosition)
+end
+
+local function equipUniquePet(petName)
+    print("Equipando pet: " .. petName)
+end
+
+local function unequipAllPets()
+    print("Desequipando todos os pets")
+end
+
+local muscleEvent = game:GetService("Players").LocalPlayer:WaitForChild("muscleEvent")
 
 local v8 = loadstring(game:HttpGet("https://raw.githubusercontent.com/ISPPs54/Ui/refs/heads/main/zzzzz"))()
     v8:Theme("dark")

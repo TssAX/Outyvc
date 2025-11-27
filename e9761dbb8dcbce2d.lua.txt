@@ -1,4 +1,6 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/LKN1400/N/refs/heads/main/LZN"))():AddWindow("ZTX X VUVU157", {
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LKN1400/N/refs/heads/main/LZN"))()
+
+local window = library:AddWindow("ZTX X VUVU157", {
         main_color = Color3.fromRGB(25, 22, 40),
         min_size = Vector2.new(550, 450),
         toggle_key = Enum.KeyCode.RightShift,

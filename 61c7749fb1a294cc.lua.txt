@@ -1,5 +1,5 @@
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblameaabis/Ililililililililililililil/refs/heads/main/paid%20lib", true))()
-   local window = v141:AddWindow("Enchanted Hub || Paid Version", {
+   local window = library:AddWindow("Enchanted Hub || Paid Version", {
         main_color = Color3.fromRGB(50, 0, 0),
         min_size = Vector2.new(470, 1400),
         can_resize = false

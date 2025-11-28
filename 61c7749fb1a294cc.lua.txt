@@ -3050,8 +3050,6 @@ local window = library:AddWindow("Enchanted Hub || Paid Version", {
     end);
 
 local p903 = window:AddTab("Gym Farm")
-
-    (function(p903)
         getgenv().working = false
         _G.selectedBenchPress = "Starter Island"
         _G.selectedSquat = "Starter Island"
@@ -3640,7 +3638,6 @@ local p903 = window:AddTab("Gym Farm")
     end)
 
 local v1039 = window:AddTab("View Stats")
-    local v1039 = v141:AddTab("View Stats");
     (function(pu1040)
         local vu1041 = game:GetService("Players")
         local vu1042 = vu1041.LocalPlayer

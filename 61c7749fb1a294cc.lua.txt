@@ -1,12 +1,30 @@
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblameaabis/Ililililililililililililil/refs/heads/main/paid%20lib", true))()
-   local window = library:AddWindow("Enchanted Hub || Paid Version", {
-        main_color = Color3.fromRGB(50, 0, 0),
-        min_size = Vector2.new(470, 1400),
-        can_resize = false
-    })
+local window = library:AddWindow("Enchanted Hub || Paid Version", {
+    main_color = Color3.fromRGB(50, 0, 0),
+    min_size = Vector2.new(470, 1400),
+    can_resize = false
+})
 
-    local v142 = window:AddTab("Fast Glitch")
-    v142:Show()
+local v142 = window:AddTab("Fast Glitch")
+local v401 = window:AddTab("Pets Hatch")
+local v445 = window:AddTab("Killing")
+local p903 = window:AddTab("Gym Farm")
+local v986 = window:AddTab("Teleport")
+local statsTab = window:AddTab("Stats")
+local v1039 = window:AddTab("View Stats")
+local vu1126 = window:AddTab("Paid Tab")
+local creditsTab = window:AddTab("Credits")
+
+v142:Show()
+v401:Show()
+v445:Show()
+p903:Show()
+v986:Show()
+statsTab:Show()
+v1039:Show()
+vu1126:Show()
+creditsTab:Show()
+
     local function vu239()
         local vu143 = Instance.new("ScreenGui")
         vu143.Name = "GlitchCalculator"
@@ -1069,7 +1087,7 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblam
             end)
         end)
     end)(v142)
-    local v401 = window:AddTab("Pets Hatch")
+
     v401:AddLabel("Pets:").TextSize = 22
     local vu402 = game:GetService("ReplicatedStorage")
     local vu403 = "Neon Guardian"
@@ -1269,8 +1287,7 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblam
             vu435 = nil
         end
     end)
-    local v445 = window:AddTab("Killing")
-    v445:Show()
+
     v445:AddLabel("Calculator:").TextSize = 22
     local vu446 = v445:AddLabel("%s/Min | %s/Hour | %s/Day | %s/Week")
     vu446.TextSize = 22
@@ -3046,7 +3063,6 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblam
         end
     end);
 
-local p903 = window:AddTab("Gym Farm")
     (function(p903)
         getgenv().working = false
         _G.selectedBenchPress = "Starter Island"
@@ -3381,7 +3397,7 @@ local p903 = window:AddTab("Gym Farm")
             end)
         end
     end)
-    local v986 = window:AddTab("Teleport")
+
     v986:AddLabel("Teleport:").TextSize = 22;
     (function(p987)
         local vu988 = {
@@ -3631,8 +3647,8 @@ local p903 = window:AddTab("Gym Farm")
                 return
             end
         end)()
-    end)((window:AddTab("Stats")))
-    local v1039 = window:AddTab("View Stats");
+    end)
+
     (function(pu1040)
         local vu1041 = game:GetService("Players")
         local vu1042 = vu1041.LocalPlayer
@@ -3985,9 +4001,7 @@ local p903 = window:AddTab("Gym Farm")
             end
         end)
     end)(v1039)
-    local vu1126 = v141:AddTab("Paid Tab")
-    local v1127 = vu1126
-    vu1126.Show(v1127)
+
     getgenv().ThreadCount = 10
     getgenv().isGrinding = false
     getgenv().autoEatProteinEggActive = false
@@ -5378,4 +5392,4 @@ local p903 = window:AddTab("Gym Farm")
         v1496.TextSize = 22
         v1496.TextColor3 = Color3.fromRGB(0, 255, 245)
         v1496.Font = Enum.Font.Arcade
-    end)((window:AddTab("Credits")))
+    end)

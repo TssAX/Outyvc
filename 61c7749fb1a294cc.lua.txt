@@ -5392,6 +5392,6 @@ creditsTab:Show()
         v1496.TextSize = 22
         v1496.TextColor3 = Color3.fromRGB(0, 255, 245)
         v1496.Font = Enum.Font.Arcade
-    end)(creditsTab)
+    end)
 
 library:Init()

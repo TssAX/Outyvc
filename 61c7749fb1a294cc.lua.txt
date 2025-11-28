@@ -1,11 +1,11 @@
-local v141 = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblameaabis/Ililililililililililililil/refs/heads/main/paid%20lib", true))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblameaabis/Ililililililililililililil/refs/heads/main/paid%20lib", true))()
    local window = v141:AddWindow("Enchanted Hub || Paid Version", {
         main_color = Color3.fromRGB(50, 0, 0),
         min_size = Vector2.new(470, 1400),
         can_resize = false
     })
 
-    local v142 = v141:AddTab("Fast Glitch")
+    local v142 = window:AddTab("Fast Glitch")
     v142:Show()
     local function vu239()
         local vu143 = Instance.new("ScreenGui")

@@ -3045,6 +3045,8 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblam
             task.wait(0.2)
         end
     end);
+
+local p903 = window:AddTab("Gym Farm")
     (function(p903)
         getgenv().working = false
         _G.selectedBenchPress = "Starter Island"
@@ -3378,8 +3380,8 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblam
                 end
             end)
         end
-    end)((v141:AddTab("Gym Farm")))
-    local v986 = v141:AddTab("Teleport")
+    end)
+    local v986 = window:AddTab("Teleport")
     v986:AddLabel("Teleport:").TextSize = 22;
     (function(p987)
         local vu988 = {

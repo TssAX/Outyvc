@@ -25,6 +25,20 @@ v1039:Show()
 vu1126:Show()
 creditsTab:Show()
 
+local vu1 = game:GetService("Players")
+local LocalPlayer = game.Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local brawlEvent = game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("brawlEvent")
+local muscleEvent = LocalPlayer:WaitForChild("muscleEvent")
+
+local slamConn, spamThread, targetPlr = nil, nil, nil
+
+local function processTool(tool)
+    if tool and tool:IsA("Tool") and (tool.Name == "Punch" or tool.Name:match("Attack")) then
+        tool:SetAttribute("ActivatedOverride", true)
+    end
+end
+
     local function vu239()
         local vu143 = Instance.new("ScreenGui")
         vu143.Name = "GlitchCalculator"

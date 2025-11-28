@@ -4,7 +4,8 @@ local v141 = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblameaa
         min_size = Vector2.new(470, 1400),
         can_resize = false
     })
-    local v142 = window:AddTab("Fast Glitch")
+
+    local v142 = v141:AddTab("Fast Glitch")
     v142:Show()
     local function vu239()
         local vu143 = Instance.new("ScreenGui")

@@ -1069,7 +1069,7 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblam
             end)
         end)
     end)(v142)
-    local v401 = v141:AddTab("Pets Hatch")
+    local v401 = window:AddTab("Pets Hatch")
     v401:AddLabel("Pets:").TextSize = 22
     local vu402 = game:GetService("ReplicatedStorage")
     local vu403 = "Neon Guardian"
@@ -1269,7 +1269,7 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblam
             vu435 = nil
         end
     end)
-    local v445 = v141:AddTab("Killing")
+    local v445 = window:AddTab("Killing")
     v445:Show()
     v445:AddLabel("Calculator:").TextSize = 22
     local vu446 = v445:AddLabel("%s/Min | %s/Hour | %s/Day | %s/Week")
@@ -3629,8 +3629,8 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblam
                 return
             end
         end)()
-    end)((v141:AddTab("Stats")))
-    local v1039 = v141:AddTab("View Stats");
+    end)((window:AddTab("Stats")))
+    local v1039 = window:AddTab("View Stats");
     (function(pu1040)
         local vu1041 = game:GetService("Players")
         local vu1042 = vu1041.LocalPlayer
@@ -5376,4 +5376,4 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iblam
         v1496.TextSize = 22
         v1496.TextColor3 = Color3.fromRGB(0, 255, 245)
         v1496.Font = Enum.Font.Arcade
-    end)((v141:AddTab("Credits")))
+    end)((window:AddTab("Credits")))
